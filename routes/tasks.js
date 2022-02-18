@@ -47,10 +47,10 @@ router.get('/', async (req, res, next) => {
     await pool.promise()
         .query('SELECT * FROM tasks')
         .then(([rows, fields]) => {
-            res.json({
-                tasks: {
-                    data: rows
-                }
+            res.render('tasks.njk', {
+                tasks: rows,
+                title: 'Tasks',
+                layout: 'layout.njk'
             });
         })
         .catch(err => {
