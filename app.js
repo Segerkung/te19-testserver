@@ -9,8 +9,14 @@ const usersRouter = require('./routes/users');
 const tasksRouter = require('./routes/tasks');
 
 
-
 const app = express();
+
+const nunjucks = require('nunjucks')
+
+nunjucks.configure('views', {
+  autoescape: true,
+  express: app
+});
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -19,7 +25,7 @@ app.use(cookieParser());
 app.use(sassMiddleware({
   src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
-  indentedSyntax: true, // true = .sass and false = .scss
+  indentedSyntax: false, // true = .sass and false = .scss
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -27,7 +33,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/tasks', tasksRouter);
-
 
 
 module.exports = app;
