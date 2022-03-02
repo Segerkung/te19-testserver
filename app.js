@@ -8,10 +8,11 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const tasksRouter = require('./routes/tasks');
 
-
 const app = express();
 
 const nunjucks = require('nunjucks')
+const session = require('express-session')
+
 
 nunjucks.configure('views', {
   autoescape: true,
@@ -29,6 +30,13 @@ app.use(sassMiddleware({
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
