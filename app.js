@@ -3,16 +3,17 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
+const nunjucks = require('nunjucks');
+const session = require('express-session');
+
 require('dotenv').config();
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const tasksRouter = require('./routes/tasks');
+const tasksApiRouter = require('./routes/api/tasks');
 
 const app = express();
-
-const nunjucks = require('nunjucks')
-const session = require('express-session')
-
 
 nunjucks.configure('views', {
   autoescape: true,
@@ -30,17 +31,16 @@ app.use(sassMiddleware({
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}))
+    secret: 'sup3rHemli5',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { sameSite: true }
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/tasks', tasksRouter);
-
+app.use('/api/tasks', tasksApiRouter);
 
 module.exports = app;
