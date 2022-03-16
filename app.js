@@ -11,7 +11,7 @@ require('dotenv').config();
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const tasksRouter = require('./routes/tasks');
-const tasksApiRouter = require('./routes/api/tasks');
+//const tasksApiRouter = require('./routes/api/tasks');
 
 const app = express();
 
@@ -41,6 +41,6 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/tasks', tasksRouter);
-app.use('/api/tasks', tasksApiRouter);
+//app.use('/api/tasks', tasksApiRouter);
 
 module.exports = app;
