@@ -32,7 +32,7 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-    secret: 'sup3rHemli5',
+    secret: 'abowbre1234',
     resave: false,
     saveUninitialized: true,
     cookie: { sameSite: true }
