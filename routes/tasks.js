@@ -96,9 +96,9 @@ router.get('/:id/delete', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     // { "task": "koda post" }
-    const task = req.body.task;
+    const meeps = req.body.task;
 
-    if (task.length < 3) {
+    if (meeps.length < 3) {
         res.status(400).json({
             task: {
                 error: 'A task must have at least 3 characters',
