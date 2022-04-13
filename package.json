@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "~14"
+  },
   "name": "te19-testserver",
   "version": "0.0.0",
   "private": true,
